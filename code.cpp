@@ -4,25 +4,36 @@
 #include <windows.h>
 #include <thread>
 #include <chrono>
+#include <limits>
+#include <mmsystem.h>
+#pragma comment(lib, "winmm.lib")
 
 using namespace std;
 
 void sinal();
 void caverna();
+void esperarEnter() {
+    cout << "Continuar...";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
+}
+
+// 🔊 Função pra tocar música
+void tocarTema() {
+    PlaySound("starsong.wav", NULL, SND_FILENAME | SND_ASYNC);
+}
 
 // Funcao para rolar um dado de 6 lados
 int rolarDado() {
     return rand() % 6 + 1;
 }
 
-int main() {
-    srand(time(0));
+int main(){
+    int escolha;
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
 
-    int escolha;
-
-    cout << "====================================\n";
+    cout << "===============x=====================\n";
     cout << " UMA AVENTURA STAR WARS\n";
     cout << "====================================\n";
 
@@ -35,24 +46,20 @@ int main() {
 
     cout << "Você decide investigar?\n";
     cout << "1 - Investigar sinal desconhecido\n";
-    cout << "2 - Seguir com a sua missão\n";
+    cout << "2 - Seguir com a sua missão.\n";
     cout << "Resposta: ";
     cin >> escolha;
-
-    if (escolha == 1) {
+    if(escolha == 1) {
         sinal();
     } else if (escolha == 2) {
         caverna();
-    } else {
-        cout << "\nOpcao invalida.\n";
     }
-
-    return 0;
 }
 
 void sinal() {
     int escolha;
 
+    system("cls");
 
     cout << "====================================\n";
     cout << " O SINAL DESCONHECIDO\n";
@@ -64,13 +71,16 @@ void sinal() {
     cout << "Percebendo o perigo, você tenta recuar silenciosamente, movendo sua nave com cautela para não chamar atenção.\n";
     cout << "Mas é tarde demais - dois caças imperiais surgem no seu encalço.\n";
 
+   
     cout << "\nA perseguição começa.\n";
 
     cout << "\nDesviando por entre os asteroides em alta velocidade, você luta para escapar, mas um erro de cálculo é tudo o que basta.\n";
     cout << "Sua nave colide violentamente contra um dos blocos de gelo.\n";
     cout << "O impacto é brutal.\n";
     cout << "Sua visão escurece… e tudo fica em silêncio.\n";
-
+    esperarEnter();
+   
+    system("cls");
 
     this_thread::sleep_for(chrono::seconds(1));
     cout << ".\n";
@@ -79,45 +89,48 @@ void sinal() {
     this_thread::sleep_for(chrono::seconds(1));
     cout << "...\n";
     this_thread::sleep_for(chrono::seconds(1));
+    system("cls");
 
     cout << "Você desperta com a cabeça latejando.\n";
-    cout << "\nSeus pulsos estão presos por algemas, e seu corpo, pesado — completamente desarmado.\n";
+    cout << "\nSeus pulsos estão presos por algemas, e seu corpo, pesado — completamente desarmado. \n";
     cout << "Ao olhar em volta, você reconhece o ambiente:\n";
     cout << "Uma cela metálica, provavelmente dentro do Destroyer Imperial.\n";
-
+   
     cout << "\nDo lado de fora, dois guardas conversam em voz baixa. Você se concentra, tentando captar cada palavra.\n";
+   
     cout << "\nEles mencionam sua captura… e algo pior.\n";
+
     cout << "\nO alto comando já está sendo notificado e que provavelmente irão enviar um Inquisidor.\n";
+   
     cout << "\nVocê percebe que conseguiria destruir a porta usando a força, mas isso te deixaria exausto, porém é questão de tempo até enviarem um inquisidor.\n";
 
     cout << "\nO que você faz?\n";
     cout << "1 - Destruir a porta usando a Força\n";
-    cout << "2 - Procurar outra saída\n";
+    cout << "2 - Procurar outra saída.\n";
     cout << "Resposta: ";
     cin >> escolha;
-
-    if (escolha == 1) {
+    if(escolha == 1) {
         system("cls");
 
-        cout << "Você decide destruir a porta.\n";
+        cout << "Você decidide destruir a porta\n";
         cout << "Concentrando a Força, você consegue arrancar a porta da cela e arremessá-la para frente.\n";
         cout << "Ela voa alguns metros e bate na cela oposta, mas não atinge nenhum dos guardas.\n";
         cout << "— Droga, o Jedi escapou! Atirem! — grita um deles.\n";
         cout << "Exausto e desarmado, você nem consegue reagir.\n";
         cout << "Os disparos de blaster atingem você em cheio.\n";
         cout << "Tudo escurece.\n";
-        cout << "\nGAME OVER\n";
+        cout << "\nGAME OVER";
+       
         return;
-    } 
-    else if (escolha == 2) {
+    } else if (escolha == 2) {
         system("cls");
 
         cout << "Olhando em volta, você percebe um duto de ventilação. Usando a Força, consegue soltá-lo e abrir passagem.\n";
         cout << "Você entra no duto e logo encontra uma bifurcação: um caminho à direita e outro à esquerda.\n";
         cout << "Ao ouvir as vozes dos soldados, você entende a situação. Eles já perceberam sua fuga.\n";
         cout << "Pelas conversas, você descobre:\n";
-        cout << "  • O caminho da esquerda leva à sala de armas\n";
-        cout << "  • O da direita aparenta ser os aposentos do Capitão\n";
+        cout << "  •O caminho da esquerda leva à sala de armas\n";
+        cout << "  •O da direita aparenta ser os aposentos do Capitão\n";
 
         cout << "\nQual caminho você escolhe?\n";
         cout << "1 - Aposentos do Capitão\n";
@@ -125,7 +138,7 @@ void sinal() {
         cout << "Resposta: ";
         cin >> escolha;
 
-        if (escolha == 1) {
+        if(escolha == 1) {
             system("cls");
 
             cout << "Você decide seguir pelo caminho da direita.\n";
@@ -138,10 +151,12 @@ void sinal() {
             cout << "Eu vou te derrubar aqui e agora, sozinho, e mostrar a todos do que sou capaz.\n";
             cout << "\nEle corre em sua direção, com seu bastão eletrificado.\n";
             cout << "Entrar em Combate\n";
-
+            esperarEnter();
+           
+            system("cls");
             cout << "====================================\n";
-            cout << "!!COMBATE!!\n";
-            cout << "====================================\n";
+            cout << "!!COMBATE!!";
+            cout << "\n====================================\n";
             cout << "\nINIMIGO: Vanderlei, o cara da Manutenção\n";
 
             cout << "\nAções Disponíveis\n";
@@ -150,50 +165,51 @@ void sinal() {
             cout << "3 - Esperar o Stormtrooper atacar para contra-atacar\n";
             cout << "Resposta: ";
             cin >> escolha;
-
-            if (escolha == 1) {
+           
+            if(escolha == 1) {
                 system("cls");
 
                 cout << "Você ativa seu sabre de luz e parte para o ataque.\n";
                 cout << "Vanderlei tenta se defender com o bastão, mas não entende com o que está lidando.\n";
                 cout << "O sabre atravessa o metal como se fosse nada.\n";
                 cout << "O bastão é cortado ao meio… e Vanderlei também.\n";
+                esperarEnter();
 
             } else if (escolha == 2) {
                 system("cls");
 
-                cout << "Você decide usar a Força.\n";
+                cout << "Você decide usar a força\n";
                 cout << "Vanderlei é arremessado com violência contra a parede.\n";
                 cout << "Ele bate a cabeça com força e cai no chão, desacordado.\n";
+                esperarEnter();
 
             } else if (escolha == 3) {
                 system("cls");
 
-                cout << "Você decide apenas desviar do ataque.\n";
+                cout << "Você decide apenas desviar do ataque\n";
                 cout << "Vanderlei avança com tudo, mas se atrapalha no próprio movimento.\n";
                 cout << "Ele tropeça, perde o controle do bastão e acaba se eletrocutando.\n";
                 cout << "O choque o derruba imediatamente.\n";
-              
+                esperarEnter();
             }
 
             system("cls");
 
             cout << "Após derrotar Vanderlei, você sai rapidamente da sala.\n";
             cout << "No caminho, encontra a sala de comando… completamente vazia,\n";
-            cout << "provavelmente por causa do alvoroço que você causou.\n";
+            cout << "Provavelmente por causa do alvoroço que você causou.\n";
             cout << "Seguindo pelo corredor, você avista o hangar onde sua nave está.\n";
             cout << "Para sua sorte, também parece estar vazio.\n";
             cout << "Você tem pouco tempo.\n";
             cout << "Pode tentar sabotar os sistemas do Destroyer antes de fugir…\n";
             cout << "Ou simplesmente correr até sua nave e sair dali o mais rápido possível.\n";
-
             cout << "\nO que você faz?\n";
-            cout << "1 - Sabotar os sistemas da nave\n";
-            cout << "2 - Correr até a sua nave\n";
+            cout << "1 — Sabotar os sistemas da nave\n";
+            cout << "2 — Correr até a sua nave\n";
             cout << "Resposta: ";
             cin >> escolha;
 
-            if (escolha == 1) {
+            if(escolha == 1) {
                 system("cls");
 
                 cout << "Você decide sabotar os sistemas da nave.\n";
@@ -203,14 +219,14 @@ void sinal() {
                 cout << "Um exército de stormtroopers aparece no corredor, correndo na sua direção, todos com os blasters apontados para você.\n";
                 cout << "Você corre como nunca, desviando dos tiros com a ajuda do seu sabre.\n";
                 cout << "Ao chegar no hangar, entra na sua nave, liga tudo às pressas e decola o mais rápido possível.\n";
-                cout << "\nMesmo com os escudos danificados pelo impacto anterior, eles ainda conseguem aguentar alguns disparos de blasters.\n";
-                cout << "Com o coração acelerado, você sabe que é só questão de tempo até usarem os canhões do Destroyer.\n";
-                cout << "E acontece.\n";
-                cout << "O Destroyer abre fogo contra você.\n";
-                cout << "O primeiro tiro passa longe.\n";
-
+                cout << "\nMesmo com os escudos danificados pelo impacto anterior, eles ainda conseguem aguentar alguns disparos de blasters.";
+                cout << "\nCom o coração acelerado, você sabe que é só questão de tempo até usarem os canhões do Destroyer.";
+                cout << "\nE acontece.";
+                cout << "\nO Destroyer abre fogo contra você.";
+                cout << "\nO primeiro tiro passa longe.\n";
+                esperarEnter();
+                
                 system("cls");
-
                 this_thread::sleep_for(chrono::seconds(1));
                 cout << ".\n";
                 this_thread::sleep_for(chrono::seconds(1));
@@ -218,19 +234,16 @@ void sinal() {
                 this_thread::sleep_for(chrono::seconds(1));
                 cout << "...\n";
                 this_thread::sleep_for(chrono::seconds(1));
-                
                 system("cls");
-
                 cout << "O segundo quase acerta.\n";
 
-                this_thread::sleep_for(chrono::seconds(1));
+                this_thread::sleep_for(chrono::seconds(2));
                 cout << ".\n";
                 this_thread::sleep_for(chrono::seconds(1));
                 cout << "..\n";
                 this_thread::sleep_for(chrono::seconds(1));
                 cout << "...\n";
                 this_thread::sleep_for(chrono::seconds(1));
-                
                 system("cls");
 
                 cout << "Você já tinha aceitado seu destino…\n";
@@ -238,10 +251,15 @@ void sinal() {
                 cout << "A explosão lança sua nave para longe, mas você ainda está inteiro.\n";
                 cout << "Você conseguiu escapar.\n";
                 cout << "Com a nave danificada, você decide retornar à base para descansar.\n";
-
+               
                 cout << "\nVOCÊ SOBREVIVEU!\n";
-                return;
+                
+                tocarTema();
+                system("pause");
+                int segura;
+                cin >> segura;
 
+                
             } else if (escolha == 2) {
                 system("cls");
 
@@ -254,8 +272,11 @@ void sinal() {
                 cout << "Os tiros atingem em cheio.\n";
                 cout << "Sua nave explode com você dentro.\n";
                 cout << "\nGAME OVER\n";
+               
                 return;
             }
+
+
 
         } else if (escolha == 2) {
             system("cls");
@@ -265,8 +286,9 @@ void sinal() {
             cout << "Quando levanta o olhar, percebe a situação.\n";
             cout << "O que parece ser um esquadrão inteiro está ali… todos olhando para você, com os blasters apontados.\n";
             cout << "Nem tem o que fazer.\n";
-            cout << "O barulho dos blasters é a última coisa que você ouve.\n";
-            cout << "\nGAME OVER\n";
+            cout << "O barulho dos blasters é a última coisa que você ouve. \n";
+            cout << "\nGAME OVER";
+           
             return;
         }
     }
@@ -290,9 +312,15 @@ void caverna() {
     cout << "Depois de algum tempo viajando pelo hiperespaço, sua nave finalmente alcança o destino.\n";
     cout << "Diante de você, um planeta remoto e silencioso se revela.\n";
     cout << "Segundo antigos registros da Ordem Jedi, é aqui que repousa o Orbe Ancestral.\n";
+    esperarEnter();
+    system("cls");
 
+    this_thread::sleep_for(chrono::seconds(2));
+    cout << ".\n";
     this_thread::sleep_for(chrono::seconds(1));
-    cout << "\n...\n";
+    cout << "..\n";
+    this_thread::sleep_for(chrono::seconds(1));
+    cout << "...\n";
     this_thread::sleep_for(chrono::seconds(1));
 
     cout << "\nVocê pousa sua nave sobre um terreno gelado e irregular.\n";
@@ -313,7 +341,7 @@ void caverna() {
         cout << "Talvez o artefato nunca devesse ser encontrado.\n";
         cout << "\nGAME OVER\n";
         return;
-    } 
+    }
     else if (escolha != 1) {
         system("cls");
         cout << "Sem conseguir se decidir, você hesita por tempo demais.\n";
@@ -347,14 +375,14 @@ void caverna() {
         cout << "Você consegue escapar, mas sai ferido.\n";
         cout << "\nVocê perdeu 2 de vida.\n";
         vidaJogador -= 2;
-    } 
+    }
     else if (escolha == 2) {
         system("cls");
         cout << "Você escolhe o túnel escuro, confiando mais nos seus instintos do que na visão.\n";
         cout << "O silêncio é absoluto.\n";
         cout << "Com passos lentos e mão firme, você avança sem chamar atenção.\n";
         cout << "Por enquanto, tudo parece sob controle.\n";
-    } 
+    }
     else {
         system("cls");
         cout << "Confuso diante da bifurcação, você demora demais para decidir.\n";
@@ -369,11 +397,19 @@ void caverna() {
         return;
     }
 
+    esperarEnter();
+    system("cls");
+
+    this_thread::sleep_for(chrono::seconds(2));
+    cout << ".\n";
     this_thread::sleep_for(chrono::seconds(1));
-    cout << "\n...\n";
+    cout << "..\n";
     this_thread::sleep_for(chrono::seconds(1));
+    cout << "...\n";
+    this_thread::sleep_for(chrono::seconds(1));           
 
     system("cls");
+
     cout << "====================================\n";
     cout << " A PONTE DE PEDRA\n";
     cout << "====================================\n";
@@ -406,13 +442,13 @@ void caverna() {
             cout << "Você perdeu 2 de vida.\n";
             vidaJogador -= 2;
         }
-    } 
+    }
     else if (escolha == 2) {
         system("cls");
         cout << "Você decide não arriscar.\n";
         cout << "Seguindo por uma passagem lateral estreita, encontra uma rota alternativa.\n";
         cout << "Mas o som das pedras se movendo desperta algo adormecido nas profundezas.\n";
-    } 
+    }
     else {
         system("cls");
         cout << "Na dúvida, você tenta avançar mesmo sem um plano claro.\n";
@@ -426,6 +462,9 @@ void caverna() {
         cout << "\nGAME OVER\n";
         return;
     }
+
+    esperarEnter();
+    system("cls");
 
     this_thread::sleep_for(chrono::seconds(1));
     cout << "\n.\n";
@@ -475,11 +514,11 @@ void caverna() {
                 cout << "Seu golpe erra o alvo.\n";
             }
             defendendo = false;
-        } 
+        }
         else if (escolha == 2) {
             cout << "Você assume uma posição defensiva e se prepara para o impacto.\n";
             defendendo = true;
-        } 
+        }
         else {
             cout << "Você hesita no momento errado e perde a vez.\n";
             defendendo = false;
@@ -517,6 +556,11 @@ void caverna() {
         cout << "Ao tocá-lo, uma onda de energia percorre todo o ambiente.\n";
         cout << "Você sente que a missão foi cumprida.\n";
         cout << "\nPARABÉNS! Você venceu a aventura.\n";
+        tocarTema();
+        system("pause");
+        int pausa;
+        cin >> pausa;
+
     } else {
         cout << "====================================\n";
         cout << " FIM DA JORNADA\n";
