@@ -27,12 +27,14 @@ Este projeto consiste em uma narrativa interativa desenvolvida em C++, onde o jo
 - Manipulação de entrada/saída (cin / cout)
 - Organização de código em múltiplas funções
 - Simulação de combate com lógica probabilística
+- Integração de áudio ao fim do jogo
 
   
 🎮 Como Jogar
 - Compile o código em um compilador C++ (g++)
 - Execute o programa
 - Leia a história e escolha suas ações digitando as opções no terminal
+- OBS: Manter o arquivo starsong.wav no mesmo diretório do .exe para funcionamento correto do programa
 
 
 ⚔️ Sistema de Combate
